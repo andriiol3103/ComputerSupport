@@ -1,0 +1,182 @@
+---
+title: "Task1"
+author: "Andrii"
+date: "10/01/2024"
+format:
+  html:
+    embed-resources: true
+editor: source
+---
+
+### 1.1. Atomic Types
+
+Question description
+
+Create the following variables related to your chosen object:
+- 4 numeric values (e.g., population, temperature, size, rating)  
+- 3 integer values (e.g., number of moons, buildings, inhabitants)  
+- 2 logical values (e.g., has_water, is_inhabited)  
+- 3 character values (e.g., name, region, category)
+
+```{r}
+#_code for solving task
+
+#numeric
+temperature <- 14
+year <- 1223
+elevation <- 118 #meters
+distance <- 60 #kilometers
+
+
+#integer
+population <- 1620
+area <- 17.5 #square kilometers
+buildings <- 204
+
+
+#character
+city_name <- "Cierny Brod"
+city_old_name <- "Kusoud"
+district <- "Galanta district"
+
+
+#logical
+has_water <- TRUE
+is_inhabited <- TRUE 
+```
+
+
+
+### 1.2. Vectors
+
+Create three different vectors:
+
+1. **Numeric vector** combining all your numeric and integer variables.  
+   *(Use `c()`.)*
+
+2. **Sequence vector** from any number between 10–50 to 100, Choose step between 2 and 10.  
+   *(Use `seq()` or `:`.)*
+
+3. **Logical vector** of length 10 with random `TRUE`/`FALSE` values using `sample()`.
+
+```{r}
+#_code for solving task
+# 1. Numeric vector
+numeric_vector <- c(population, area)
+numeric_vector
+
+
+# 2. Sequence vector
+sequence_vector <- seq(14, 100, by = 8)
+sequence_vector
+
+
+
+
+# 3. Logical vector
+logical_vec <- sample(c(TRUE, FALSE), size = 10, replace = TRUE)
+logical_vec
+
+```
+### 1.3. MATRIX
+Create a **3×3 matrix** with random numbers between **-50 and 50**  
+(using `sample()` or `runif()`), and name its **rows and columns** according to your theme.
+
+```{r}
+#_code for solving task
+set.seed(123)  # so results stay the same each time
+my_matrix <- matrix(sample(-50:50, 9, replace = TRUE), nrow = 3, ncol = 3)
+
+# Name rows and columns according to your theme
+rownames(my_matrix) <- c("Planet_A", "Planet_B", "Planet_C")
+colnames(my_matrix) <- c("Energy", "Gravity", "Light")
+
+# Display the matrix
+my_matrix
+
+# Calculate row and column averages
+rowMeans(my_matrix)
+colMeans(my_matrix)
+
+```
+### 1.4. LIST
+Create a **list** that combines all your previous objects:  
+atomic variables, vectors, and matrix.
+Add one extra element — a short **description** of your universe as a string.
+```{r}
+#_code for solving task
+my_list <- list(
+  # include some of your atomic variables
+  population = population,
+  area = area,
+  has_water = has_water,
+  city_name = city_name,
+  
+  # include your created vectors
+  numeric_vector = numeric_vector,
+  sequence_vector = sequence_vector,
+  logical_vec = logical_vec,
+  
+  # include your matrix
+  matrix = my_matrix,
+  
+  # add a short description
+  description = "This is my data universe — full of cities, planets, logic, and random numbers!"
+)
+
+# Display the list
+my_list
+```
+
+
+
+### 1.5. Factor
+Create a **factor variable** representing categories within your universe, e.g.:
+
+
+
+- `"low"`, `"medium"`, `"high"`  
+- `"infant"`, `"child"`, `"adult"`  
+- `"poor"`, `"average"`, `"rich"`
+
+Make sure you have **at least 5 observations** total.  
+Then use `table()` to show how many objects fall into each category.
+```{r}
+#code_for solving task
+energy_level <- factor(c("low", "medium", "high", "medium", "high", "low", "high"))
+
+# Show counts of each level
+table(energy_level)
+#energy_level
+```
+### 1.6. Data Frame
+Create a **data frame** related to your object that includes:
+
+1. **5–8 observations** (rows)  
+2. **At least 3 columns** of different data types  
+   (e.g., name, numeric value, logical flag, category)
+   
+```{r}
+#_code for solving task
+my_df <- data.frame(
+  Planet = c("Astra", "Luna", "Zyra", "Kora", "Mira", "Vega"),
+  Population = c(1620, 980, 1450, 720, 1230, 880),
+  Habitable = c(TRUE, TRUE, FALSE, TRUE, TRUE, FALSE),
+  Level = factor(c("high", "medium", "low", "medium", "high", "low"))
+)
+
+# Rename columns (if needed)
+colnames(my_df) <- c("Planet_Name", "Population_Size", "Is_Habitable", "Development_Level")
+
+# Display structure and summary
+str(my_df)
+summary(my_df)
+
+# Add a new derived column: population ratio (relative to max)
+my_df$Pop_Ratio <- my_df$Population_Size / max(my_df$Population_Size)
+
+# Show final data frame
+my_df
+```
+
+
